@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2"> 
+    <h2>Añadir nuevo proveedor</h2>
+        <form (ngSubmit)="onSubmit()" #formpro="ngForm">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <i class="fa fa-check-circle check" *ngIf="nombre.valid"></i>
+                <i class="fa fa-exclamation-circle uncheck" *ngIf="nombre.invalid && nombre.touched"></i>
+                <input type="text" class="form-control" id="nombre" ngModel name="nombre" required nombre #nombre="ngModel"> 
+                <p class="alert alert-danger" *ngIf="nombre.invalid && nombre.touched">Por favor introduzca un nombre correcto.</p>
+            </div>
+            <div class="form-group">
+                <label for="cif">C.I.F.</label>
+                <i class="fa fa-check-circle check" *ngIf="cif.valid"></i>
+                <i class="fa fa-exclamation-circle uncheck" *ngIf="cif.invalid && cif.touched"></i>
+                <input type="text" class="form-control" id="cif" ngModel name="cif" required cif #cif="ngModel"> 
+                <p class="alert alert-danger" *ngIf="cif.invalid && cif.touched">Por favor introduzca un cif correcto.</p>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <i class="fa fa-check-circle check" *ngIf="direccion.valid"></i>
+                <i class="fa fa-exclamation-circle uncheck" *ngIf="direccion.invalid && direccion.touched"></i>
+                <input type="text" class="form-control" id="direccion" ngModel name="direccion" required direccion #direccion="ngModel"> 
+                <p class="alert alert-danger" *ngIf="direccion.invalid && direccion.touched">Por favor introduzca una direccion correcta.</p>
+            </div>
+            <div class="form-group">
+                <label for="cp">Código Postal</label>
+                <i class="fa fa-check-circle check" *ngIf="cp.valid"></i>
+                <i class="fa fa-exclamation-circle uncheck" *ngIf="cp.invalid && cp.touched"></i>
+                <input type="text" class="form-control" id="cp" ngModel name="cp" required cp #cp="ngModel"> 
+                <p class="alert alert-danger" *ngIf="cp.invalid && cp.touched">Por favor introduzca un cp correcto.</p>
+            </div>
+            <div class="form-group">
+                <label for="localidad">Localidad</label>
+                <i class="fa fa-check-circle check" *ngIf="localidad.valid"></i>
+                <i class="fa fa-exclamation-circle uncheck" *ngIf="localidad.invalid && localidad.touched"></i>
+                <input type="text" class="form-control" id="localidad" ngModel name="localidad" required localidad #localidad="ngModel"> 
+                <p class="alert alert-danger" *ngIf="localidad.invalid && localidad.touched">Por favor introduzca una localidad correcta.</p>
+            </div>
+            <div class="form-group">
+                <label for="provincia">Provincia</label>
+                <select class="form-select" id="provincia" ngModel name="provincia">
+                    <option>Seleccione la provincia</option> 
+                    <option *ngFor="let provincia of provincias" [value]="provincia">{{provincia}} </option> 
+                </select>
+            </div> 
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <i class="fa fa-check-circle check" *ngIf="telefono.valid"></i>
+                <i class="fa fa-exclamation-circle uncheck" *ngIf="telefono.invalid && telefono.touched"></i>
+                <input type="text" class="form-control" id="telefono" ngModel name="telefono" required telefono #telefono="ngModel"> 
+                <p class="alert alert-danger" *ngIf="telefono.invalid && telefono.touched">Por favor introduzca un telefono correcta.</p>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <i class="fa fa-check-circle check" *ngIf="email.valid"></i>
+                <i class="fa fa-exclamation-circle uncheck" *ngIf="email.invalid && email.touched"></i>
+                <input type="text" class="form-control" id="email" ngModel name="email" required email #email="ngModel"> 
+                <p class="alert alert-danger" *ngIf="email.invalid && email.touched">Por favor introduzca una dirección de correo correcta.</p>
+                </div>
+            <div class="form-group">
+                <label for="contacto">Persona de contacto</label>
+                <input type="text" class="form-control" id="contacto"  ngModel name="contacto">
+            </div>
+            <div class="right">
+            <button type="submit" class="btn btn-dark" [disabled]="!formpro.valid">Añadir Proveedor</button>
+            <p class="alert alert-danger" *ngIf="!formpro.valid">Por favor complete todos los campos</p>
+            </div>
+        </form>
+    <hr>
+    <<pre>{{ proveedor | json }}</pre>
+</div>
+   

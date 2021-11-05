@@ -1,0 +1,27 @@
+   
+   <nav class="navbar navbar navbar-dark bg-dark ">
+    <div class="container-fluid" *ngIf="this.authS.isLogged==true">
+      <a class="navbar-brand" href="#">MARKET NOW</a>
+     <a routerLink="/"><img src="https://i.pinimg.com/1200x/4e/23/fa/4e23fa52aa5b98460ccdad2881952574.jpg" height="70px" width="70px" routerLinkActive="active"></a>
+      <div class="collapse navbar-collapse" class="right" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact:true}" routerLink="/" >Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/proveedores">Proveedores</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+             <a class="nav-link" routerLink="/addpres">Añadir Presupuesto</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" routerLink="/presupuestos">Presupuestos </a>
+             </li>
+             <li>
+               <button [disabled]="loggingout" type="button" class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
+             </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

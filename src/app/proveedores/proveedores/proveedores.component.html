@@ -1,0 +1,23 @@
+<h3>Listado de Proveedores</h3>
+<div class="right">
+    <button type="button" class="btn btn-dark"  routerLinkActive="active" routerLink="/addprovee">Añadir nuevo proveedor</button>
+</div>
+<div>
+    <table class="table table-bordered table-striped tabla"
+ style="margin-top: 40px;">
+ <thead>
+ <tr class="filters">
+ <th>Nombre</th>
+ <th>Correo Electrónico</th>
+ <th>Telefono</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr *ngFor="let proveedor of proveedores">
+ <td>{{ proveedor.nombre }}</td>
+ <td><a href="mailto:{{ proveedor.email }}">{{ proveedor.email }}</a></td>
+ <td>{{ proveedor.telefono }}</td>
+ </tr>
+ </tbody>
+  </table>
+</div>

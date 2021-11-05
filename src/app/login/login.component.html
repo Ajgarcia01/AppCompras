@@ -1,0 +1,36 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+  <div *ngIf="!this.authS.ready">
+    <h1 style="color:red">SplashScreen</h1>
+  </div>
+
+  <div id="logreg-forms">
+    <form class="form-signin"  [formGroup]="loginForm">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> SIGN IN</h1>
+        <div class="social-login derecha">
+          <div *ngIf="this.authS.ready" class="">
+            <div (click)="this.loginGoogle()" id="customBtn" class="customGPlusSignIn">
+              <span class="icon"></span>
+              <span class="buttonText">Google</span>
+            </div>
+          </div>
+          <span><i ></i> Sign in with Google+</span>
+        </div>
+        <p style="text-align:center"> OR  </p>
+        <input type="email" id="email" class="form-control" formControlName="email" placeholder="Email address" required="" autofocus="">
+        <p class="alert alert-danger" *ngIf="erroresForm.email">{{ erroresForm.email }}</p>
+        <br>
+        <input type="password" id="password" class="form-control" formControlName="password" placeholder="Password" required="">
+        <p class="alert alert-danger" *ngIf="erroresForm.password">{{ erroresForm.password }}</p>
+        
+        <button class="btn btn-success btn-block" type="submit" (click)="login()"  [disabled]="!loginForm.valid"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+        <a href="#" routerLinkActive="active" routerLink="/register">¿Quieres crear una cuenta?</a>
+        </form>
+</div>

@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="/style.css">
+<button type="button" class="btn btn-dark" routerLinkActive="active" routerLink="/login">🡸</button>
+<body>
+    <div>
+    <form [formGroup]="registroForm">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">SIGN UP</h1>
+    <input type="email" id="email" class="form-control" placeholder="Email address" formControlName="email"  required autofocus=""> 
+    <p class="alert alert-danger" *ngIf="erroresForm.email">{{ erroresForm.email }}</p>
+    <br>
+    <input type="password" id="password" class="form-control" placeholder="Password"  formControlName="password" required autofocus="">
+    <p class="alert alert-danger" *ngIf="erroresForm.password">{{ erroresForm.password }}</p>
+    <br>
+    <button class="btn btn-primary btn-block" type="submit" (click)="onSubmit()" [disabled]="!registroForm.valid"><i class="fas fa-user-plus"></i> Sign Up</button> 
+        </form>  
+    </div>
+</body>

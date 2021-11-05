@@ -1,0 +1,48 @@
+<div class="row" >
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2"> 
+    <h2>Añadir nuevo presupuesto</h2>
+    <a class="btn btn-primary float-md-right" routerLink="/presupuestos">Regresar al listado</a>
+    <form [formGroup]="presupuestoForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating">
+        <input type="text" id="proveedor" class="form-control" id="floatingInput" formControlName="proveedor">
+        <label for="proveedor">Proveedor</label>
+    </div>
+    <div class="form-floating">
+        <input type="date" id="fecha" class="form-control" id="floatingInput"  formControlName="fecha">
+        <label for="fecha">Fecha</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" id="concepto" class="form-control" id="floatingInput"  formControlName="concepto">
+        <label for="concepto">Concepto</label>
+    </div>
+    <div class="form-floating">
+        <input type="number" id="base" class="form-control" id="floatingInput"  formControlName="base">
+        <label for="base">Base Imponible</label>
+    </div>
+    <div class="form-floating">
+    <select class="form-control" id="tipo" formControlName="tipo">
+        <option value=""><p>Tipo de IVA</p></option> 
+        <option value=0> 0 %</option>
+        <option value=0.04> 4 %</option>
+        <option value=0.10>10 %</option>
+        <option value=0.21>21 %</option> 
+        </select>
+    </div>
+    <div class="form-floating">
+        <input type="number" id="iva" class="form-control" id="floatingInput"  formControlName="iva" [(ngModel)]="presupuestoForm.value.iva" readonly>
+        <label for="iva">Cantidad de IVA</label>
+    </div>
+    <div class="form-floating">
+        <input type="number" id="total" class="form-control" id="floatingInput" formControlName="total"  [(ngModel)]="presupuestoForm.value.total" readonly>
+        <label for="total">Total de factura</label>
+    </div>
+    <div class="ops">
+        <button class="btn btn-dark" type="submit">Añadir Presupuesto</button>
+    </div>
+    </form>
+    </div>
+   </div>
+   <pre>Status del formulario: {{ presupuestoForm.status | json }}</pre>
+   <pre>Valor del formulario: {{ presupuestoForm.value | json }}</pre>
+   <pre>{{ presupuesto | json }}</pre>
+   
