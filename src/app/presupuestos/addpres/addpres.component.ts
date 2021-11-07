@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { PresupuestosService } from 'src/app/servicios/presupuestos.service';
 
@@ -16,10 +17,10 @@ export class AddpresComponent implements OnInit {
   tipo: any;
   iva: any = 0;
   total: any = 0;
-  constructor(public authS:AuthService,private pf:FormBuilder,private presupuestoService: PresupuestosService) { }
+  constructor(public authS:AuthService,private pf:FormBuilder,private presupuestoService: PresupuestosService,private router:Router) { }
 
   ngOnInit(): void {
-    this.authS.isLogged==true;
+    //this.authS.isLogged==true;
     this.presupuestoForm=this.pf.group({
       proveedor:['',Validators.required],
       fecha:['',Validators.required],
@@ -35,6 +36,7 @@ export class AddpresComponent implements OnInit {
   onSubmit(){
     this.presupuesto=this.savePresupuesto();
     this.presupuestoService.postPresupuesto(this.presupuesto);
+    this.router.navigate(['/presupuestos']);
   }
   savePresupuesto() {
     const savePresupuesto = {

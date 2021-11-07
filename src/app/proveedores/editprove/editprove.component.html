@@ -1,7 +1,7 @@
 <button type="button" class="btn btn-dark" routerLinkActive="active" routerLink="/proveedores">🡸 REGRESAR A PROVEEDORES</button>
 <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2"> 
-    <h2>Añadir nuevo proveedor</h2>
+    <h2>Editar Proveedor</h2>
         <form  [formGroup]="proveFrom">
             <div class="form-floating">
                 <input type="text" class="form-control" id="nombre" formControlName="nombre"> 
@@ -30,6 +30,7 @@
             
             </div>
             <div class="form-floating">
+               
                 <select class="form-select" id="provincia" formControlName="provincia">
                     <option>Seleccione la provincia</option> 
                     <option *ngFor="let provincia of provincias" [value]="provincia">{{provincia}} </option> 
@@ -49,9 +50,11 @@
                 <input type="text" class="form-control" id="contacto"  formControlName="contacto" >
                 <label for="contacto">Persona de contacto</label>
             </div>
-            <div class="right">
-            <button type="submit" class="btn btn-dark"  (click)="onSubmit()">Añadir Proveedor</button>
-            </div>
+            <button type="submit" class="btn btn-dark" [disabled]="!proveFrom.valid" (click)="UpdateProveedor()">Guardar Cambios</button>
+            <a class="btn btn-danger" routerLink="/proveedores">Cancelar</a>
+            <p class="alert alert-danger" *ngIf="!proveFrom.valid">
+            Por favor complete todos los campos
+            </p>
         </form>
 </div>
    

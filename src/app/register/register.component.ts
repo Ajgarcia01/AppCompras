@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.userdata = this.saveUserdata();
     this.userdata=this.authS.registroUsuario(this.userdata);
-    this.router.navigate(['/login'])
+    this.router.navigate(['/inicio'])
   }
   /*
   login(){

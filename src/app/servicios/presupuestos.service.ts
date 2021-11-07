@@ -39,23 +39,6 @@ export class PresupuestosService {
     })
       return result;
   }
-  
-/*
-  async getpresupuestos() {
-    try {
-      let result: any[] = [];
-      let tpm = await this.db.database.ref().child("presupuestos").get();
-      let presupuestos = tpm.val();
-      for (let presupuesto in presupuestos) {
-        result.push({ $key: presupuesto, ...presupuestos[presupuesto] })
-      }
-      return result;
-    } catch (err) {
-      throwError(err);
-      return null;
-    }
-  }
-*/
 
   async getPresupuesto(key: string) {
     try {
@@ -63,7 +46,6 @@ export class PresupuestosService {
       let tmp = await this.db.database.ref().child("presupuestos").child(key).get();
       let result: Presupuesto = {$key:key, ...tmp.val()};
       result.key=key;
-      console.log("HOLAA")
       console.log(result)
       return result;
       

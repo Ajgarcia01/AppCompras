@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { PresupuestosComponent } from './presupuestos/presupuestos/presupuestos.component';
 import { EditpresComponent } from './presupuestos/editpres/editpres.component';
 import { RegisterComponent } from './register/register.component';
+import { EditproveComponent } from './proveedores/editprove/editprove.component';
 
 
 const routes: Routes = [
@@ -41,7 +42,8 @@ const routes: Routes = [
     LoginComponent,
     PresupuestosComponent,
     EditpresComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditproveComponent
   ],
   imports: [
     BrowserModule,

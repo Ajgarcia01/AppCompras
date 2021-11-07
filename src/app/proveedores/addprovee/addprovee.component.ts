@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PresupuestosService } from 'src/app/servicios/presupuestos.service';
+import { ProveedoresService } from 'src/app/servicios/proveedores.service';
 
 @Component({
   selector: 'app-addprovee',
@@ -9,9 +12,19 @@ import { NgForm } from '@angular/forms';
 })
 
 export class AddproveeComponent implements OnInit {
-  @ViewChild('formpro') formpro: NgForm;
+  //@ViewChild('formpro') formpro: NgForm;
+  proveFrom:FormGroup
   proveedor:any;
-  proveedores:any []=[]
+  proveedores:any;
+  nombre:'';
+  cif:'';
+  direccion:'';
+  cp:'';
+  localidad:'';
+  provincia:'';
+  telefono:'';
+  email:'';
+  contacto:'';
 
   provincias: string[] = [ 
     'Álava','Albacete','Alicante','Almería','Asturias','Ávila','Badajoz','Barcelona',
@@ -23,34 +36,64 @@ export class AddproveeComponent implements OnInit {
     'Santa Cruz de Tenerife', 'Teruel', 'Toledo', 'Valencia', 'Valladolid', 'Vizcaya', 
     'Zamora','Zaragoza' ]
   
-  constructor( private db:AngularFireDatabase) { 
-  this.proveedor={
-      nombre:'',
-      cif:'',
-      direccion:'',
-      cp:'',
-      localidad:'',
-      provincia:'',
-      telefono:null,
-      email:'',
-      contacto:''
-   }
+  constructor(private pf:FormBuilder,private proveedoresService:ProveedoresService,private router:Router) { 
+  
   }
-  onSubmit(){
- 
-    this.proveedor.nombre = this.formpro.value.nombre;
-    this.proveedor.cif = this.formpro.value.cif;
-    this.proveedor.direccion = this.formpro.value.direccion;
-    this.proveedor.cp = this.formpro.value.cp;
-    this.proveedor.localidad = this.formpro.value.localidad;
-    this.proveedor.provincia = this.formpro.value.provincia;
-    this.proveedor.telefono = this.formpro.value.telefono;
-    this.proveedor.email = this.formpro.value.email;
-    this.proveedor.contacto = this.formpro.value.contacto;
-    this.formpro.reset();
-    }
 
   ngOnInit(): void {
+    this.proveFrom=this.pf.group({
+      nombre:['',Validators.required],
+      cif:['',Validators.required],
+      direccion:['',Validators.required],
+      cp:['',Validators.required],
+      localidad:['',Validators.required],
+      provincia:['',Validators.required],
+      telefono:['',Validators.required],
+      email:['',Validators.required],
+      contacto:['',Validators.required],
+
+    });
   }
+
+  
+  saveProveedor(){
+    const saveproveedores={
+      nombre: this.proveFrom.get('nombre')?.value,
+      cif: this.proveFrom.get('cif')?.value,
+      direccion: this.proveFrom.get('direccion')?.value,
+      cp: this.proveFrom.get('cp')?.value,
+      localidad: this.proveFrom.get('localidad')?.value,
+      provincia: this.proveFrom.get('provincia')?.value,
+      telefono: this.proveFrom.get('telefono')?.value,
+      email: this.proveFrom.get('email')?.value,
+      contacto: this.proveFrom.get('contacto')?.value,
+    }
+    this.proveedoresService.addprove(saveproveedores);
+    return saveproveedores;
+  }
+  
+    onSubmit(){
+      this.proveedor=this.saveProveedor();
+      this.proveedoresService.postProveedor(this.proveedor);
+      this.onChanges();
+      this.router.navigate(['/proveedores']);
+   
+    }
+
+    
+    onChanges():void{
+      
+        this.nombre = "",
+        this.cif =  "",
+        this.direccion =  "",
+        this.cp =  "",
+        this.localidad =  "",
+        this.provincia = "",
+        this.telefono =  '',
+        this.email =  "",
+        this.contacto = "";
+      
+        }
+        
 
 }

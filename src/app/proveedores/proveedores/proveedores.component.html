@@ -1,3 +1,7 @@
+<button type="button" class="btn btn-dark" routerLinkActive="active" routerLink="/inicio">🡸</button>
+<div>
+    <br>
+</div>
 <h3>Listado de Proveedores</h3>
 <div class="right">
     <button type="button" class="btn btn-dark"  routerLinkActive="active" routerLink="/addprovee">Añadir nuevo proveedor</button>
@@ -8,15 +12,29 @@
  <thead>
  <tr class="filters">
  <th>Nombre</th>
- <th>Correo Electrónico</th>
+ <th>CIF</th>
+ <th>Direccion</th>
+ <th>Código Postal</th>
+ <th>Localidad</th>
+ <th>Provincia</th>
  <th>Telefono</th>
+ <th>Email</th>
+ <th>Persona de Contacto</th>
  </tr>
  </thead>
  <tbody>
  <tr *ngFor="let proveedor of proveedores">
- <td>{{ proveedor.nombre }}</td>
- <td><a href="mailto:{{ proveedor.email }}">{{ proveedor.email }}</a></td>
+ <td>{{proveedor.nombre}}</td>
+ <td>{{ proveedor.cif }}</td>
+ <td>{{ proveedor.direccion }}</td>
+ <td>{{ proveedor.cp }}</td>
+ <td>{{ proveedor.localidad }}</td>
+ <td>{{ proveedor.provincia }}</td>
  <td>{{ proveedor.telefono }}</td>
+ <td>{{ proveedor.email }}</td>
+ <td>{{ proveedor.contacto }}</td>
+ <td><button type="button" class="btn btn-success" routerLink='/editprove/{{proveedor.key}}'>Editar</button></td>
+ <td><button type="button" class="btn btn-danger" (click)="deleteProveedor(proveedor.key)">Eliminar</button></td>
  </tr>
  </tbody>
   </table>

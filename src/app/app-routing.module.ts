@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { AddpresComponent } from './presupuestos/addpres/addpres.component';
 import { EditpresComponent } from './presupuestos/editpres/editpres.component';
 import { AddproveeComponent } from './proveedores/addprovee/addprovee.component';
+import { EditproveComponent } from './proveedores/editprove/editprove.component';
 import { ProveedoresComponent } from './proveedores/proveedores/proveedores.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -17,7 +18,8 @@ const routes: Routes = [{path:'', redirectTo:'/login',pathMatch:'full'},
 {path:'addprovee', component:AddproveeComponent},
 {path:'proveedores', component:ProveedoresComponent},
 {path:'editpres/:key', component:EditpresComponent},
-{path:'register', component:RegisterComponent}
+{path:'register', component:RegisterComponent},
+{path:'editprove/:key', component:EditproveComponent}
 
 ];
 

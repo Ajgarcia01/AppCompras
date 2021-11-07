@@ -1,5 +1,7 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Proveedor } from 'src/app/model/Proveedor';
 import { ProveedoresService } from 'src/app/servicios/proveedores.service';
 
 @Component({
@@ -9,32 +11,18 @@ import { ProveedoresService } from 'src/app/servicios/proveedores.service';
 })
 
 export class ProveedoresComponent implements OnInit {
-  proveedores:any;
-  mensaje:string="";
-  constructor(private proveedoresService:ProveedoresService,private db:AngularFireDatabase) { }
+  proveedores:Proveedor[]|any;
+  proveedor:any;
+  constructor(private proveedoresService:ProveedoresService) { }
  
-  ngOnInit(): void {
-    this.mensaje=this.proveedoresService.getProveedores();
-    this.proveedores=this.proveedoresService.getProveedores();
+  ngOnInit() {
+  this.proveedores=this.proveedoresService.getProveedores();
+  console.log(this.proveedores=this.proveedoresService.getProveedores())
   }
 
-  getProveedor():void{
-    let c={
-      nombre:"Carlos",
-      telefono:600564565,
-      ciudad:"Córdoba",
-      hobbies:[
-        "correr","saltar"
-      ]
-    }
-
-    this.db.database.ref().child("proveedores").get().then((data)=>{
-
-      const jugadores=data.val();
-      for(let proveedor in this.proveedores){
-        console.log(jugadores[proveedor])
-      }
-  })
+  deleteProveedor(key: string) {
+    this.proveedoresService.deleteprove(key);
+    console.log(key)
+    this.proveedores = this.proveedoresService.getProveedores();
   }
-
 }

@@ -13,11 +13,8 @@ export class PresupuestosComponent implements OnInit {
 
   presupuestos: Presupuesto[]|any;
   presupuesto: any;
-  key!: string;
-  pre: Presupuesto
 
-  constructor(private presupuestosService: PresupuestosService, private router: Router,
-    private activatedrouter: ActivatedRoute,public authS:AuthService) { }
+  constructor(private presupuestosService: PresupuestosService,public authS:AuthService) { }
 
   ngOnInit() {
     this.presupuestos = this.presupuestosService.getpresupuestos();
@@ -25,6 +22,7 @@ export class PresupuestosComponent implements OnInit {
   }
   deletePresupuesto(key: string) {
     this.presupuestosService.deletPresus(key);
+    console.log("Eliminado")
     this.presupuestos = this.presupuestosService.getpresupuestos();
   }
 }
